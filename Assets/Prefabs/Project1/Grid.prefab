@@ -134,7 +134,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &2931826344246670056
 RectTransform:
   m_ObjectHideFlags: 0
@@ -299,6 +299,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3799595243025282216}
   - component: {fileID: 4808394158199638107}
+  - component: {fileID: 1710553526013517273}
   m_Layer: 0
   m_Name: Grid
   m_TagString: Untagged
@@ -334,3 +335,20 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d447d1efb4767ae438ac1f7cde8055ff, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  neighbors: []
+  isMarked: 0
+  xTextObject: {fileID: 5572066050698204409}
+  gridClickEvent: {fileID: 11400000, guid: d05de626b1811dc4898464a444b09456, type: 2}
+--- !u!65 &1710553526013517273
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9090044295414923129}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 0.95, y: 0.95, z: 0.05}
+  m_Center: {x: 0, y: 0, z: 0}
