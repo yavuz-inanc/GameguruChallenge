@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 namespace Project1
@@ -17,6 +15,12 @@ namespace Project1
             new Vector2Int(0, 1)
         };
         public int GridCount => gridN * gridN;
+
+        public void SetValues(int gridN, int matchCount)
+        {
+            this.gridN = gridN;
+            this.matchCount = matchCount;
+        }
     }
 }
 

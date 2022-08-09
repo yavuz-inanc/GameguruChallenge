@@ -1,6 +1,3 @@
-using System;
-using System.Collections;
-using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 
@@ -8,9 +5,9 @@ namespace Project1
 {
     public class UIController : MonoBehaviour
     {
-        public TextMeshProUGUI matchCountText;
-        public TMP_InputField inputField;
-        public IntEvent rebuildEvent;
+        [SerializeField] private TextMeshProUGUI matchCountText;
+        [SerializeField] private TMP_InputField inputField;
+        [SerializeField] private IntEvent rebuildEvent;
         
         public void SetMatchCountText(int value)
         {

@@ -5,7 +5,7 @@ namespace Project1
         protected override void ResetObjectDefaults(Grid pooledObject)
         {
             base.ResetObjectDefaults(pooledObject);
-            pooledObject.Reset();
+            pooledObject.ResetGrid();
         }
     }
 }

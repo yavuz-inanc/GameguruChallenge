@@ -1,4 +1,3 @@
-using System;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -17,13 +16,13 @@ namespace Project1
             Create();
         }
 
-        public void Create()
+        private void Create()
         {
             CreateGrid();
             SetNeighbors();
         }
 
-        public void CreateGrid()
+        private void CreateGrid()
         {
             grids = new Grid[gridData.gridN, gridData.gridN];
             var offset = gridData.gridN / 2f - 0.5f;
@@ -41,13 +40,12 @@ namespace Project1
             }
         }
 
-        public void SetNeighbors()
+        private void SetNeighbors()
         {
             for (int i = 0; i < gridData.GridCount; i++)
             {
                 var index = CalculateGridIndex(i);
                 var currentGrid = grids[index.x, index.y];
-                currentGrid.neighbors.Clear();
 
                 for (int j = 0; j < gridData.neighborPivots.Length; j++)
                 {
@@ -55,17 +53,17 @@ namespace Project1
                     var neighborXIndex = index.x + currentNeighborPivot.x;
                     var neighborYIndex = index.y + currentNeighborPivot.y;
                     if (CheckBorders(neighborXIndex, neighborYIndex)) continue;
-                    currentGrid.neighbors.Add(grids[neighborXIndex, neighborYIndex]);
+                    currentGrid.AddNeighbor(grids[neighborXIndex, neighborYIndex]);
                 }
             }
         }
 
-        public Vector2Int CalculateGridIndex(int i)
+        private Vector2Int CalculateGridIndex(int i)
         {
             return new Vector2Int(i % gridData.gridN, i / gridData.gridN);
         }
 
-        public bool CheckBorders(int neighborXIndex, int neighborYIndex)
+        private bool CheckBorders(int neighborXIndex, int neighborYIndex)
         {
             if (neighborXIndex >= gridData.gridN || neighborXIndex < 0 ||
                 neighborYIndex >= gridData.gridN || neighborYIndex < 0)
@@ -84,23 +82,22 @@ namespace Project1
                 matchCountEvent.Raise(gridData.matchCount);
                 for (int i = 0; i < neighborGrids.Count; i++)
                 {
-                    neighborGrids[i].isMarked = false;
-                    neighborGrids[i].xTextObject.SetActive(false);
+                    neighborGrids[i].CloseGrid();
                 }
 
                 neighborGrids.Clear();
             }
         }
 
-        public void CheckNeighbors(Grid grid)
+        private void CheckNeighbors(Grid grid)
         {
             if (neighborGrids.Contains(grid)) return;
             neighborGrids.Add(grid);
 
-            for (int i = 0; i < grid.neighbors.Count; i++)
+            for (int i = 0; i < grid.NeighborCount; i++)
             {
-                var currentGrid = grid.neighbors[i];
-                if (currentGrid.isMarked)
+                var currentGrid = grid.GetNeighborAtIndex(i);
+                if (currentGrid.IsMarked)
                 {
                     CheckNeighbors(currentGrid);
                 }
@@ -110,12 +107,11 @@ namespace Project1
         public void Rebuild(int gridN)
         {
             CleanGrids();
-            gridData.gridN = gridN;
-            gridData.matchCount = 0;
+            gridData.SetValues(gridN, 0);
             Create();
         }
 
-        public void CleanGrids()
+        private void CleanGrids()
         {
             for (int i = 0; i < grids.Length; i++)
             {
@@ -126,8 +122,7 @@ namespace Project1
 
         private void OnDestroy()
         {
-            gridData.gridN = 5;
-            gridData.matchCount = 0;
+            gridData.SetValues(5, 0);
         }
     }
 }
