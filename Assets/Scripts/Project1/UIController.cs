@@ -10,15 +10,23 @@ namespace Project1
     {
         public TextMeshProUGUI matchCountText;
         public TMP_InputField inputField;
-
+        public VoidEvent rebuildEvent;
+        public GridDataSO gridData;
+        
         private void Start()
         {
-            inputField.SetTextWithoutNotify("5");
+            inputField.SetTextWithoutNotify(gridData.gridN.ToString());
         }
 
         public void SetMatchCountText(int value)
         {
             matchCountText.SetText($"Match Count = {value}");
+        }
+
+        public void RebuildButtonClick()
+        {
+            gridData.gridN = int.Parse(inputField.text);
+            rebuildEvent.Raise();
         }
     }
 }

@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -5,21 +6,10 @@ namespace Project1
 {
     public class GridController : MonoBehaviour
     {
-        public Grid gridPrefab;
-        public int gridN;
-        public Grid[,] grids;
-        public int GridCount => gridN * gridN;
-        
-        public List<Grid> neighborGrids = new List<Grid>();
-        public int count;
-        
-        public readonly Vector2Int[] neighborPivots =
-        {
-            new Vector2Int(-1, 0),
-            new Vector2Int(0, -1),
-            new Vector2Int(1, 0),
-            new Vector2Int(0, 1)
-        };
+        [SerializeField] private GridDataSO gridData;
+        [SerializeField] private IntEvent matchCountEvent;
+        private Grid[,] grids;
+        private List<Grid> neighborGrids = new List<Grid>();
 
         private void Start()
         {
@@ -29,17 +19,17 @@ namespace Project1
 
         public void CreateGrid()
         {
-            grids = new Grid[gridN, gridN];
-            var offset = gridN / 2f - 0.5f;
+            grids = new Grid[gridData.gridN, gridData.gridN];
+            var offset = gridData.gridN / 2f - 0.5f;
             
-            for (var i = 0; i < GridCount; i++)
+            for (var i = 0; i < gridData.GridCount; i++)
             {
                 var gridIndex = CalculateGridIndex(i);
                 
                 var xPosition = gridIndex.x - offset;
                 var yPosition = offset - gridIndex.y;
                 
-                var currentGrid = Instantiate(gridPrefab, new Vector3(xPosition, yPosition, 0f),
+                var currentGrid = Instantiate(gridData.gridPrefab, new Vector3(xPosition, yPosition, 0f),
                     Quaternion.identity, transform);
                 
                 grids[gridIndex.x, gridIndex.y] = currentGrid;
@@ -48,15 +38,15 @@ namespace Project1
 
         public void SetNeighbors()
         {
-            for (int i = 0; i < GridCount; i++)
+            for (int i = 0; i < gridData.GridCount; i++)
             {
                 var index = CalculateGridIndex(i);
                 var currentGrid = grids[index.x, index.y];
                 currentGrid.neighbors.Clear();
                 
-                for (int j = 0; j < neighborPivots.Length; j++)
+                for (int j = 0; j < gridData.neighborPivots.Length; j++)
                 {
-                    var currentNeighborPivot = neighborPivots[j];
+                    var currentNeighborPivot = gridData.neighborPivots[j];
                     var neighborXIndex = index.x + currentNeighborPivot.x;
                     var neighborYIndex = index.y + currentNeighborPivot.y;
                     if (CheckBorders(neighborXIndex, neighborYIndex)) continue;
@@ -67,14 +57,13 @@ namespace Project1
 
         public Vector2Int CalculateGridIndex(int i)
         {
-            return new Vector2Int(i % gridN, i / gridN);
+            return new Vector2Int(i % gridData.gridN, i / gridData.gridN);
         }
-        
-        
+
         public bool CheckBorders(int neighborXIndex, int neighborYIndex)
         {
-            if (neighborXIndex >= gridN || neighborXIndex < 0 ||
-                neighborYIndex >= gridN || neighborYIndex < 0)
+            if (neighborXIndex >= gridData.gridN || neighborXIndex < 0 ||
+                neighborYIndex >= gridData.gridN || neighborYIndex < 0)
                 return true;
             
             return false;
@@ -86,8 +75,8 @@ namespace Project1
             CheckNeighbors(grid);
             if (neighborGrids.Count > 2)
             {
-                count++;
-                Debug.Log(count);
+                gridData.matchCount++;
+                matchCountEvent.Raise(gridData.matchCount);
                 for (int i = 0; i < neighborGrids.Count; i++)
                 {
                     neighborGrids[i].isMarked = false;
@@ -110,6 +99,11 @@ namespace Project1
                     CheckNeighbors(currentGrid);
                 }
             }
+        }
+
+        private void OnDestroy()
+        {
+            gridData.matchCount = 0;
         }
     }
 }
