@@ -8,10 +8,16 @@ namespace Project1
     {
         [SerializeField] private GridDataSO gridData;
         [SerializeField] private IntEvent matchCountEvent;
+        [SerializeField] private GridPool gridPool;
         private Grid[,] grids;
         private List<Grid> neighborGrids = new List<Grid>();
 
         private void Start()
+        {
+            Create();
+        }
+
+        public void Create()
         {
             CreateGrid();
             SetNeighbors();
@@ -21,17 +27,16 @@ namespace Project1
         {
             grids = new Grid[gridData.gridN, gridData.gridN];
             var offset = gridData.gridN / 2f - 0.5f;
-            
+
             for (var i = 0; i < gridData.GridCount; i++)
             {
                 var gridIndex = CalculateGridIndex(i);
-                
                 var xPosition = gridIndex.x - offset;
                 var yPosition = offset - gridIndex.y;
-                
-                var currentGrid = Instantiate(gridData.gridPrefab, new Vector3(xPosition, yPosition, 0f),
-                    Quaternion.identity, transform);
-                
+
+                var currentGrid = gridPool.ActivateFromPool();
+                currentGrid.transform.position = new Vector3(xPosition, yPosition, 0f);
+                currentGrid.gameObject.SetActive(true);
                 grids[gridIndex.x, gridIndex.y] = currentGrid;
             }
         }
@@ -43,7 +48,7 @@ namespace Project1
                 var index = CalculateGridIndex(i);
                 var currentGrid = grids[index.x, index.y];
                 currentGrid.neighbors.Clear();
-                
+
                 for (int j = 0; j < gridData.neighborPivots.Length; j++)
                 {
                     var currentNeighborPivot = gridData.neighborPivots[j];
@@ -65,7 +70,7 @@ namespace Project1
             if (neighborXIndex >= gridData.gridN || neighborXIndex < 0 ||
                 neighborYIndex >= gridData.gridN || neighborYIndex < 0)
                 return true;
-            
+
             return false;
         }
 
@@ -82,6 +87,7 @@ namespace Project1
                     neighborGrids[i].isMarked = false;
                     neighborGrids[i].xTextObject.SetActive(false);
                 }
+
                 neighborGrids.Clear();
             }
         }
@@ -101,8 +107,26 @@ namespace Project1
             }
         }
 
+        public void Rebuild(int gridN)
+        {
+            CleanGrids();
+            gridData.gridN = gridN;
+            gridData.matchCount = 0;
+            Create();
+        }
+
+        public void CleanGrids()
+        {
+            for (int i = 0; i < grids.Length; i++)
+            {
+                var index = CalculateGridIndex(i);
+                gridPool.ReturnToPool(grids[index.x, index.y]);
+            }
+        }
+
         private void OnDestroy()
         {
+            gridData.gridN = 5;
             gridData.matchCount = 0;
         }
     }

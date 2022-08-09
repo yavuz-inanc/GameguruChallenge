@@ -9,6 +9,6 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 953d2ee86dfbb274291be18266d710f5, type: 3}
+  m_Script: {fileID: 11500000, guid: 03cefc4ded71a324ab3b6089a6c37443, type: 3}
   m_Name: RebuildEvent
   m_EditorClassIdentifier: 

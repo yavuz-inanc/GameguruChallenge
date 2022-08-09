@@ -18,5 +18,11 @@ namespace Project1
             xTextObject.SetActive(true);
             gridClickEvent.Raise(this);
         }
+
+        public void Reset()
+        {
+            isMarked = false;
+            xTextObject.SetActive(false);
+        }
     }
 }

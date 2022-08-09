@@ -12,6 +12,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1cd0a729e175b864d81b86d5faaf40b8, type: 3}
   m_Name: GridDataSO
   m_EditorClassIdentifier: 
-  gridPrefab: {fileID: 4808394158199638107, guid: 6cd9e16384971a24799bb18fa045fa2f, type: 3}
   gridN: 5
   matchCount: 0

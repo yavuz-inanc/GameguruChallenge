@@ -7,7 +7,6 @@ namespace Project1
     [CreateAssetMenu(fileName = "New GridDataSO", menuName = "Data/GridDataSO")]
     public class GridDataSO : ScriptableObject
     {
-        public Grid gridPrefab;
         public int gridN;
         public int matchCount;
         public readonly Vector2Int[] neighborPivots =

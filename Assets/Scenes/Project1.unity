@@ -545,6 +545,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   gridData: {fileID: 11400000, guid: e5ed45e6b7a5cf34fba3732400b2af27, type: 2}
   matchCountEvent: {fileID: 11400000, guid: 5f2b9351e996bdf4fbbe686fa01eaaf3, type: 2}
+  gridPool: {fileID: 480453708}
 --- !u!4 &253956724
 Transform:
   m_ObjectHideFlags: 0
@@ -558,8 +559,55 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1404109356}
+  - {fileID: 480453709}
   m_Father: {fileID: 0}
   m_RootOrder: 3
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &480453707
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 480453709}
+  - component: {fileID: 480453708}
+  m_Layer: 0
+  m_Name: GridPool
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &480453708
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 480453707}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1c4aa087d98f37248afc9c99ce69be26, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _prefab: {fileID: 4808394158199638107, guid: 6cd9e16384971a24799bb18fa045fa2f, type: 3}
+  _startingPoolSize: 25
+--- !u!4 &480453709
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 480453707}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 253956724}
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &575759777
 GameObject:
@@ -1256,6 +1304,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1404109356}
   - component: {fileID: 1404109357}
+  - component: {fileID: 1404109358}
   m_Layer: 0
   m_Name: Events
   m_TagString: Untagged
@@ -1297,6 +1346,34 @@ MonoBehaviour:
       - m_Target: {fileID: 253956723}
         m_TargetAssemblyTypeName: Project1.GridController, Assembly-CSharp
         m_MethodName: GridClick
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+--- !u!114 &1404109358
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1404109355}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c58f94ab61e60db49ae4ea116e264b2d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  gameEvent: {fileID: 11400000, guid: 4de44d819a9550940a94e8f88a6a39e3, type: 2}
+  unityEventResponse:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 253956723}
+        m_TargetAssemblyTypeName: Project1.GridController, Assembly-CSharp
+        m_MethodName: Rebuild
         m_Mode: 0
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -1765,4 +1842,3 @@ MonoBehaviour:
   matchCountText: {fileID: 161317711}
   inputField: {fileID: 1848118893}
   rebuildEvent: {fileID: 11400000, guid: 4de44d819a9550940a94e8f88a6a39e3, type: 2}
-  gridData: {fileID: 11400000, guid: e5ed45e6b7a5cf34fba3732400b2af27, type: 2}
