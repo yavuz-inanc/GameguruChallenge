@@ -1030,9 +1030,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   playerDataSO: {fileID: 11400000, guid: 5d452e9eb418b464bb47f115fe2b3624, type: 2}
+  gameDataSO: {fileID: 11400000, guid: a51bc8bda636ee74e8542490baabc3e2, type: 2}
   fallEvent: {fileID: 11400000, guid: c7adec7cbe281e54f974d045b62a59f4, type: 2}
   finishEvent: {fileID: 11400000, guid: a334e805f5facd24cba83e5050aca4f7, type: 2}
-  collider: {fileID: 1292910151}
+  boxCollider: {fileID: 1292910151}
+  model: {fileID: 1026876260}
 --- !u!65 &1292910151
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -1362,7 +1364,7 @@ MonoBehaviour:
     ModeOverride: 0
     LensShift: {x: 0, y: 0}
     GateFit: 2
-    m_SensorSize: {x: 0.43535912, y: 1}
+    m_SensorSize: {x: 0.5625, y: 1}
   m_Transitions:
     m_BlendHint: 0
     m_InheritPosition: 0

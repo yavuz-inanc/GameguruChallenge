@@ -8,6 +8,7 @@ namespace Project2
     public class PlayerDataSO : ScriptableObject
     {
         public Transform playerTransform;
+        public Transform modelTransform;
         public Player player;
         public PlayerSM playerSM;
         public float speed;

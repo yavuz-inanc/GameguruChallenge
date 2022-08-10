@@ -72,8 +72,8 @@ namespace Project2
             _currentPlacedCubeCount++;
             if (_currentPlacedCubeCount == MaxPlaceableCubeCount)
             {
-                SetRefValues(new Vector3(0f, 0f, currentCube.position.z + currentCube.localScale.z), 
-                    cube1.localScale);
+                /*SetRefValues(new Vector3(0f, 0f, currentCube.position.z + currentCube.localScale.z), 
+                    cube1.localScale);*/
                 isActive = false;
                 return;
             }

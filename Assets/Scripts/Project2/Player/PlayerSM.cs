@@ -21,7 +21,7 @@ namespace Project2
             playerDataSO.playerSM = this;
             
             _playerIdleState = new PlayerIdleState(playerDataSO);
-            _playerMoveState = new PlayerMoveState(playerDataSO);
+            _playerMoveState = new PlayerMoveState(playerDataSO, gameDataSO);
             _playerFallState = new PlayerFallState(playerDataSO);
             _playerFinishState = new PlayerFinishState(playerDataSO, gameDataSO);
             
