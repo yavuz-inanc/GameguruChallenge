@@ -1,6 +1,3 @@
-using System;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 namespace Project2
@@ -38,9 +35,8 @@ namespace Project2
 
         private void OnTriggerExit(Collider other)
         {
-            
-            if (Physics.BoxCast(transform.position + transform.up, 
-                    boxCollider.bounds.size / 2f, -transform.up, out RaycastHit hit))
+            if (Physics.BoxCast(transform.position + transform.up, boxCollider.bounds.size * 0.25f, 
+                    -transform.up, out RaycastHit hit,Quaternion.identity,1f))
             {
                 if (hit.collider.TryGetComponent(out IWalkable walkable)) return;
                 Fall();

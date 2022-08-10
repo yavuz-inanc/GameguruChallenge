@@ -19,8 +19,10 @@ namespace Project2
         public void Enter()
         {
             var playerTransform = _playerDataSO.playerTransform;
-            playerTransform.DOMove(new Vector3(_gameDataSO.refPos.x, playerTransform.position.y, _gameDataSO.refPos.z),
-                0.5f);
+            var modelTransform = _playerDataSO.modelTransform;
+            var target = new Vector3(_gameDataSO.refPos.x, playerTransform.position.y, _gameDataSO.refPos.z);
+            playerTransform.DOMove(target, 0.5f);
+            modelTransform.DOLookAt(target, 0.25f).SetLoops(2, LoopType.Yoyo);
         }
 
         public void Tick()

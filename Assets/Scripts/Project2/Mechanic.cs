@@ -68,17 +68,16 @@ namespace Project2
 
             SetCuttedCubeScale(cuttedCube);
             SetCuttedCubePos(cuttedCube);
-
+            
+            SetRefValues(currentCube.position, currentCube.localScale);
+           
             _currentPlacedCubeCount++;
             if (_currentPlacedCubeCount == MaxPlaceableCubeCount)
             {
-                /*SetRefValues(new Vector3(0f, 0f, currentCube.position.z + currentCube.localScale.z), 
-                    cube1.localScale);*/
                 isActive = false;
                 return;
             }
-
-            SetRefValues(currentCube.position, currentCube.localScale);
+            
             CreateNewCube();
         }
 
