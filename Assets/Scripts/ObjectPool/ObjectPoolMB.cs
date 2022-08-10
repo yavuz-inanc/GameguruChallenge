@@ -19,7 +19,7 @@ public abstract class ObjectPoolMB<T> : MonoBehaviour where T : Component
     protected Queue<T> _objectPool = new Queue<T>();
 
     #region Initialization
-    protected void Awake()
+    protected virtual void Awake()
     {
         CheckReferences();
         CreateInitialPool(_startingPoolSize);

@@ -9,6 +9,7 @@ namespace Project2
     {
         [SerializeField] private PlayerDataSO playerDataSO;
         [SerializeField] private VoidEvent fallEvent;
+        [SerializeField] private VoidEvent finishEvent;
         [SerializeField] private BoxCollider collider;
 
         private void Awake()
@@ -17,13 +18,21 @@ namespace Project2
             playerDataSO.playerTransform = transform;
         }
 
+        private void OnTriggerEnter(Collider other)
+        {
+            if (other.TryGetComponent(out Finish finish))
+            {
+                finishEvent.Raise();
+            }
+        }
+
         private void OnTriggerExit(Collider other)
         {
             
             if (Physics.Raycast(transform.position + transform.up, -transform.up, out RaycastHit hit))
             {
-                //if (hit.collider.TryGetComponent(out IWalkable walkable)) return;
-                //Fall();
+                if (hit.collider.TryGetComponent(out IWalkable walkable)) return;
+                Fall();
             }
             else
             {

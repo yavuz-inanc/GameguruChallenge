@@ -8,6 +8,7 @@ namespace Project2
     public class PlayerSM : StateMachineMB
     {
         [SerializeField] private PlayerDataSO playerDataSO;
+        [SerializeField] private GameDataSO gameDataSO;
         
         private IState _playerIdleState;
         private IState _playerMoveState;
@@ -22,7 +23,7 @@ namespace Project2
             _playerIdleState = new PlayerIdleState(playerDataSO);
             _playerMoveState = new PlayerMoveState(playerDataSO);
             _playerFallState = new PlayerFallState(playerDataSO);
-            _playerFinishState = new PlayerFinishState(playerDataSO);
+            _playerFinishState = new PlayerFinishState(playerDataSO, gameDataSO);
             
             ChangeStateToIdle();
         }
