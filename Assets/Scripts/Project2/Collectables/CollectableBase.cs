@@ -21,6 +21,7 @@ namespace Project2
             particle.transform.parent = null;
             particle.Play();
             transform.DOKill();
+            Destroy(particle.gameObject, 2f);
             Destroy(gameObject);
         }
     }
