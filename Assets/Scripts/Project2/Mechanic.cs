@@ -7,6 +7,8 @@ namespace Project2
     {
         [SerializeField] private GameDataSO gameDataSO;
         [SerializeField] private Transform cube1;
+        [SerializeField] private VoidEvent perfectMatch;
+        [SerializeField] private VoidEvent imperfectMatch;
 
         private Transform currentCube;
         private float posDiff;
@@ -57,33 +59,39 @@ namespace Project2
         public void TapAction()
         {
             if (!isActive) return;
+            posDiff = currentCube.position.x - gameDataSO.refPos.x;
             if (!PositionDiffCheck()) return;
-
-
+            if (Mathf.Abs(posDiff) < gameDataSO.tolerance)
+            {
+                posDiff = 0f;
+                perfectMatch.Raise();
+            }
+            else
+            {
+                imperfectMatch.Raise();
+            }
+            
             SetCurrentCubeScale();
             SetCurrentCubePos();
 
-            var cuttedCube = gameDataSO.cubePool.ActivateFromPool();
-            cuttedCube.gameObject.SetActive(true);
-
-            SetCuttedCubeScale(cuttedCube);
-            SetCuttedCubePos(cuttedCube);
-            
-            SetRefValues(currentCube.position, currentCube.localScale);
-           
-            _currentPlacedCubeCount++;
-            if (_currentPlacedCubeCount == MaxPlaceableCubeCount)
+            if (posDiff > 0f)
             {
-                isActive = false;
-                return;
+                var cuttedCube = gameDataSO.cubePool.ActivateFromPool();
+                cuttedCube.gameObject.SetActive(true);
+
+                SetCuttedCubeScale(cuttedCube);
+                SetCuttedCubePos(cuttedCube);
             }
-            
+
+            SetRefValues(currentCube.position, currentCube.localScale);
+
+            if (CheckPlacedCubeCount()) return;
+
             CreateNewCube();
         }
 
         public bool PositionDiffCheck()
         {
-            posDiff = currentCube.position.x - gameDataSO.refPos.x;
             if (Mathf.Abs(posDiff) >= currentCube.localScale.x)
             {
                 currentCube.DOKill();
@@ -98,6 +106,18 @@ namespace Project2
             return true;
         }
 
+        private bool CheckPlacedCubeCount()
+        {
+            _currentPlacedCubeCount++;
+            if (_currentPlacedCubeCount == MaxPlaceableCubeCount)
+            {
+                isActive = false;
+                return true;
+            }
+
+            return false;
+        }
+
         public void SetCurrentCubeScale()
         {
             var cubeScale = currentCube.localScale;
@@ -110,7 +130,14 @@ namespace Project2
             currentCube.DOKill();
 
             var cubePosition = currentCube.position;
-            cubePosition.x -= posDiff / 2f;
+            if (posDiff > 0f)
+            {
+                cubePosition.x -= posDiff / 2f;
+            }
+            else
+            {
+                cubePosition.x = gameDataSO.refPos.x;
+            }
             currentCube.position = cubePosition;
         }
 

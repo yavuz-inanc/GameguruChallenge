@@ -11,6 +11,7 @@ namespace Project2
         public Vector3 refScale;
         public FinishPool finishPool;
         public CubePool cubePool;
+        public float tolerance;
     }
 }
 
