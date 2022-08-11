@@ -27,6 +27,11 @@ namespace Project2
                 SetRefValues(other.transform);
                 finishEvent.Raise();
             }
+
+            if (other.TryGetComponent(out ICollectable collectable))
+            {
+                collectable.Collect();
+            }
         }
 
         private void SetRefValues(Transform other)
