@@ -31,7 +31,7 @@ namespace Project2
         private void SetPosition()
         {
             float x = Mathf.SmoothDamp(_playerTransform.position.x, _gameDataSO.refPos.x, ref _refVelocity, 0.2f);
-            var targetPos = Time.deltaTime * _playerDataSO.speed * _playerTransform.forward;
+            var targetPos = Time.deltaTime * _playerDataSO.currentSpeed * _playerTransform.forward;
             targetPos += _playerTransform.position;
             targetPos.x = x;
             _playerTransform.position = targetPos;

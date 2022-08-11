@@ -4,7 +4,7 @@ using UnityEngine;
 
 namespace Project2
 {
-    public class CubePool : ObjectPoolMB<Transform>
+    public class CubePool : ObjectPoolMB<Cube>
     {
         [SerializeField] private GameDataSO gameDataSO;
         protected override void Awake()

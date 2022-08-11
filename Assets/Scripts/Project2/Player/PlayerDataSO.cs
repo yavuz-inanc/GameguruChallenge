@@ -7,11 +7,12 @@ namespace Project2
     [CreateAssetMenu(fileName = "New PlayerDataSO", menuName = "Data/PlayerDataSO")]
     public class PlayerDataSO : ScriptableObject
     {
-        public Transform playerTransform;
-        public Transform modelTransform;
-        public Player player;
-        public PlayerSM playerSM;
-        public float speed;
+        [HideInInspector] public Transform playerTransform;
+        [HideInInspector] public Transform modelTransform;
+        [HideInInspector] public Player player;
+        [HideInInspector] public PlayerSM playerSM;
+        public float initialSpeed;
+        public float currentSpeed;
     }
 }
 

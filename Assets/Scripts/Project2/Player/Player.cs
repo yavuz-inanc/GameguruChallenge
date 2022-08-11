@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 
 namespace Project2
@@ -16,6 +17,7 @@ namespace Project2
             playerDataSO.player = this;
             playerDataSO.playerTransform = transform;
             playerDataSO.modelTransform = model;
+            playerDataSO.currentSpeed = playerDataSO.initialSpeed;
         }
 
         private void OnTriggerEnter(Collider other)
@@ -51,6 +53,16 @@ namespace Project2
         {
             boxCollider.enabled = false;
             fallEvent.Raise();
+        }
+
+        public void IncreaseSpeed()
+        {
+            playerDataSO.currentSpeed *= 3f;
+        }
+
+        public void DecreaseSpeed()
+        {
+            playerDataSO.currentSpeed = playerDataSO.initialSpeed;
         }
     }
 }

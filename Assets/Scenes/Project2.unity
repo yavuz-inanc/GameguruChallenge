@@ -385,6 +385,7 @@ GameObject:
   - component: {fileID: 266816570}
   - component: {fileID: 266816571}
   - component: {fileID: 266816572}
+  - component: {fileID: 266816573}
   m_Layer: 0
   m_Name: Events
   m_TagString: Untagged
@@ -487,6 +488,18 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 1292910150}
+        m_TargetAssemblyTypeName: Project2.Player, Assembly-CSharp
+        m_MethodName: DecreaseSpeed
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &266816572
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -518,6 +531,46 @@ MonoBehaviour:
       - m_Target: {fileID: 1292910153}
         m_TargetAssemblyTypeName: Project2.PlayerAnimation, Assembly-CSharp
         m_MethodName: TriggerDance
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 1292910150}
+        m_TargetAssemblyTypeName: Project2.Player, Assembly-CSharp
+        m_MethodName: DecreaseSpeed
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+--- !u!114 &266816573
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 266816568}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a4db9b51544e4114c847830268ab5ca3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  gameEvent: {fileID: 11400000, guid: 539f48837832da249932939370cfd189, type: 2}
+  unityEventResponse:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1292910150}
+        m_TargetAssemblyTypeName: Project2.Player, Assembly-CSharp
+        m_MethodName: IncreaseSpeed
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -1342,9 +1395,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   gameDataSO: {fileID: 11400000, guid: a51bc8bda636ee74e8542490baabc3e2, type: 2}
-  cube1: {fileID: 1116679182}
+  cube1: {fileID: 1966333752}
   perfectMatch: {fileID: 11400000, guid: 76285f280f83740419185471a44d0b76, type: 2}
   imperfectMatch: {fileID: 11400000, guid: 962c3d40fb5ea5847988eadfea85699c, type: 2}
+  cubesPlaced: {fileID: 11400000, guid: 539f48837832da249932939370cfd189, type: 2}
 --- !u!4 &852227264
 Transform:
   m_ObjectHideFlags: 0
@@ -1495,11 +1549,6 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: d3efbc9f45e1aac4f9e9efa96319e8cb, type: 3}
---- !u!4 &1116679182 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 8461508352535051710, guid: d3efbc9f45e1aac4f9e9efa96319e8cb, type: 3}
-  m_PrefabInstance: {fileID: 1116679181}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1181340612
 GameObject:
   m_ObjectHideFlags: 0
@@ -2273,6 +2322,17 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1966333752 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 2217534398645158669, guid: d3efbc9f45e1aac4f9e9efa96319e8cb, type: 3}
+  m_PrefabInstance: {fileID: 1116679181}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6e5cf0dd19d41b74a82a9f74cfffba35, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &2034469405
 GameObject:
   m_ObjectHideFlags: 0
@@ -2562,6 +2622,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 25f9dc2558846e8459b0d40561e1392b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _prefab: {fileID: 8461508352535051710, guid: d3efbc9f45e1aac4f9e9efa96319e8cb, type: 3}
+  _prefab: {fileID: 2217534398645158669, guid: d3efbc9f45e1aac4f9e9efa96319e8cb, type: 3}
   _startingPoolSize: 200
   gameDataSO: {fileID: 11400000, guid: a51bc8bda636ee74e8542490baabc3e2, type: 2}
